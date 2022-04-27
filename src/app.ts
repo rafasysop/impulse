@@ -5,8 +5,6 @@ import http from 'http'
 import cors from 'cors'
 import { router } from './routes';
 
-const port = 4000
-
 const app = express();
 app.use(cors())
 
@@ -20,10 +18,9 @@ const io = new Server(serverHttp, {
 
 io.on('connection', socket => {
   console.log('usuario conectado no socket', socket.id);
-  
 })
 
 app.use(express.json())
 app.use(router);
 
-app.listen(port, () => console.log(`Server is runnin on ${port}`))
+export { serverHttp, io }
