@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { AuthenticateUserController } from './controllers/AuthenticateUserController'
 import { CreateMessageController } from './controllers/CreateMessageController'
+import { GetLastThreeMessagesController } from './controllers/GetLastThreeMessagesController'
 import { ensureAuthenticated } from './middleware/ensureAuthenticated'
 
 const router = Router()
@@ -14,6 +15,8 @@ router.get('/signin/callback', (req, res) => {
 
   return res.json(code)
 })
+
+router.get('messages/last-three', new GetLastThreeMessagesController().handle)
 
 router.post('/authenticate', new AuthenticateUserController().handle)
 
